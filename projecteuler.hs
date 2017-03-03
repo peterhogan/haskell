@@ -50,6 +50,9 @@ split' n = split (div n 10) ++ [mod n 10]
 unsplit :: [Int] -> Int
 unsplit ns = sum [ a * b | (a,b) <- (zip (iterate (*10) 1) (reverse ns))]
 
+-- lcm on a set
+setLcm s = foldl lcm (head s) s
+
 -- problem 1
 problem1 n = sum $ filter (\x -> (mod x 3 == 0) || (mod x 5 == 0)) [1..(n-1)]
 
