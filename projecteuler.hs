@@ -145,6 +145,31 @@ cyclicPrimes n = filter (\x -> cyclicPrime x) [1..n]
 
 cyclicPrimesLessThan n = length $ cyclicPrimes n
 
+-- Problem 44: Pentagonal Numbers
+penta n = div (n*(3*n-1)) 2
+
+reversePenta n = 1/6 * (1 + sqrt (1 + 24*n))
+
+isPenta n = (fromIntegral $ truncate $ reversePenta n) - reversePenta n == 0
+
+pentaD j k = abs ( penta j - penta k ) 
+
+pentaSum j k = penta j + penta k
+
+isPentaSum j k = isPenta ( fromIntegral $ pentaSum j k )
+
+isPentaDiff j k = isPenta ( fromIntegral $ pentaD j k )
+
+pentaList n = [ penta x | x <- [1..n]]
+
+pentaHyperPos x y = 1/6 * ( 1 + sqrt (36*x^2 - 36*y^2 + 12*y - 12*x + 1))
+
+pentaHyperNeg x y = 1/6 * ( 1 - sqrt (36*x^2 - 36*y^2 + 12*y - 12*x + 1))
+
+pentaHyper2 x y = 1/6 * ((-1) + sqrt (36*x^2 - 36*y^2 - 12*y - 12*x + 1)) 
+
+pentaHyper2neg x y = 1/6 * ((-1) - sqrt (36*x^2 - 36*y^2 - 12*y - 12*x + 1)) 
+
 -- problem 484: Arithmetic Derivative
 factors n = head [[x,(div n x)] | x <- [2..], (mod n x == 0)]
 
